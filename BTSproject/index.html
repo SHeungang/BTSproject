@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Jua&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <title>BTS AI Visual matching Service</title>
+    <meta name="title" content="BTS face match" />
+    <meta name="subject" content="BTS AI Visual match" />
+    <meta
+      name="keywords"
+      content="BTS, AI, Matching service, Face match. Match, BTS match, Jhope, V, Jin, Jimin, JungKook, RM, Suga"
+    />
+    <meta name="author" content="minthefanboy" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="canonical" href="https://bts.7bora.com" />
+    <meta property="og:url" content="https://bts.7bora.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BTS AI Visual matching Service" />
+    <meta
+      property="og:description"
+      content="Find out which BTS member matches your face the best! A well-trained AI shows who you are best matched with among BTS. Upload your picture and check out the results!"
+    />
+    <meta property="og:image" content="purpleyou.png" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-145482737-6"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-145482737-6");
+    </script>
+  </head>
+
+  <body>
+    <nav class="p-3 container navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="https://bts.7bora.com"
+        >BTS AI Visual Matching Service</a
+      >
+    </nav>
+    <section class="section">
+      <h1 class="title">BTS AI Visual match</h1>
+      <h4 class="subtitle">
+        Find out which BTS member matches your face the best! A well-trained AI
+        shows who you are best matched with among BTS. Upload your picture and
+        check out the results! Photo data is not saved or transmitted
+        whatsoever.
+      </h4>
+      <h2 class="sr-only">
+        Find out which BTS member matches your face the best!
+      </h2>
+      <h3 class="sr-only">
+        A well-trained AI shows who you are best matched with among BTS.
+      </h3>
+      <h4 class="sr-only">
+        본 서비스는 Google의 인공지능 teachable machine 2.0을 활용하였습니다.
+      </h4>
+      <p class="sr-only">
+        Find out which BTS member matches your face the best! A well-trained AI
+        shows who you are best matched with among BTS. Upload your picture and
+        check out the results!
+      </p>
+    </section>
+
+    <h5 class="pb-2 d-flex justify-content-center">Choose your gender</h5>
+    <section class="d-flex justify-content-center">
+      <p class="d-flex align-items-center pr-3">Female</p>
+      <div>
+        <input type="checkbox" id="gender" />
+        <label for="gender">
+          <span class="knob">
+            <i></i>
+          </span>
+        </label>
+      </div>
+      <p class="d-flex align-items-center pl-3">Male</p>
+    </section>
+    <script
+      class="jsbin"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+    ></script>
+    <div class="mt-3 container file-upload">
+      <div class="image-upload-wrap">
+        <input
+          class="file-upload-input"
+          type="file"
+          onchange="readURL(this);"
+          accept="image/*"
+        />
+        <div class="drag-text">
+          <img src="upload.png" class="mt-5 pt-5 upload" />
+          <h3 class="mb-5 pb-5 pt-4 upload-text">
+            Upload your picture and check out the result!
+          </h3>
+        </div>
+      </div>
+      <div class="file-upload-content">
+        <img
+          class="file-upload-image"
+          id="face-image"
+          src="#"
+          alt="your image"
+        />
+        <div id="loading" class="animated bounce">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <p class="text-center">Processing</p>
+        </div>
+        <p class="result-message"></p>
+        <div
+          id="label-container"
+          class="d-flex flex-column justify-content-around"
+        ></div>
+
+        <div class="random_text"></div>
+
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <div class="addthis_inline_share_toolbox"></div>
+
+        <div class="pt-3 image-title-wrap">
+          <button
+            type="button p-2"
+            class="try-again-btn"
+            onclick="gaReload1();"
+            data-toggle="modal"
+            data-target="#adModal"
+          >
+            <span class="try-again-text">Try again</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-2 container d-flex justify-content-center ad-banner">
+      <ins
+        class="kakao_ad_area"
+        style="display: none"
+        data-ad-unit="DAN-1ibeto5pa83fn"
+        data-ad-width="320"
+        data-ad-height="100"
+      ></ins>
+    </div>
+    <div class="mt-2 container d-flex justify-content-center ad-banner">
+      <ins
+        class="kakao_ad_area"
+        style="display: none"
+        data-ad-unit="DAN-1jefy9znk6ibb"
+        data-ad-width="300"
+        data-ad-height="250"
+      ></ins>
+    </div>
+    <script
+      type="text/javascript"
+      src="//t1.daumcdn.net/kas/static/ba.min.js"
+      async
+    ></script>
+    <script
+      type="text/javascript"
+      src="//t1.daumcdn.net/kas/static/ba.min.js"
+      async
+    ></script>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="adModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="adModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="adModalLabel">
+              AD - Click Try again once more.
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body d-flex justify-content-center">
+            <ins
+              class="kakao_ad_area"
+              style="display: none"
+              data-ad-unit="DAN-t89oh3sc0ew5"
+              data-ad-width="300"
+              data-ad-height="250"
+            ></ins>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button
+              type="button p-2"
+              class="try-again-btn"
+              onclick="gaReload2();"
+            >
+              <span class="try-again-text">Try again with another photo</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function gaReload1() {
+        gtag("event", "RT1", {
+          event_category: "1",
+        });
+      }
+      function gaReload2() {
+        gtag("event", "RT2", {
+          event_category: "2",
+        });
+        window.location.reload();
+      }
+    </script>
+    <script>
+      (function () {
+        var d = document,
+          s = d.createElement("script");
+        s.src = "https://jocoding.disqus.com/embed.js";
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript
+      >Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+    <script>
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $(".image-upload-wrap").hide();
+            $("#loading").show();
+            $(".file-upload-image").attr("src", e.target.result);
+            $(".file-upload-content").show();
+            $(".image-title").html(input.files[0].name);
+          };
+          reader.readAsDataURL(input.files[0]);
+          init().then(function () {
+            predict();
+            $("#loading").hide();
+          });
+        } else {
+          removeUpload();
+        }
+      }
+
+      function removeUpload() {
+        $(".file-upload-input").replaceWith($(".file-upload-input").clone());
+        $(".file-upload-content").hide();
+        $(".image-upload-wrap").show();
+      }
+      $(".image-upload-wrap").bind("dragover", function () {
+        $(".image-upload-wrap").addClass("image-dropping");
+      });
+      $(".image-upload-wrap").bind("dragleave", function () {
+        $(".image-upload-wrap").removeClass("image-dropping");
+      });
+    </script>
+    <script type="text/javascript">
+      const introText = `Our AI says that you fit best with <**>. AI can picture <>`;
+      const outroText = `Do you like the result? Share it with your friends!`;
+      const randomText = [
+        "mentioning your name in a speech at an award show",
+        "getting a couple’s tattoo on his body",
+        "making a secret couple’s instagram",
+        "uploading a couple’s item on his Instagram",
+        "secretly wearing a couple’s bracelet",
+        "making a dance for you and then using it as the choreography for their next comeback",
+        "singing you to sleep over the phone",
+        "playing an album for you before it's released",
+        "bringing you to the recording studio",
+        "revealing your relationship to the public",
+        "always giving you a ride in his sports car",
+        "givng all his designer items from sponsorships",
+        "introducing you to the other members as his girlfriend",
+        "giving you a secret hand signal at the concert",
+        "missing you so much that he takes a private jet to see you",
+        "happily eating breakfast that you made for him",
+        "being in a very close relationship with you",
+        "taking your photo while on a romantic date at a fancy restaurant",
+        "happily smiling when he sees you holding food and gifts at his M/V set",
+      ];
+
+      let URL;
+      const urlMale =
+        "https://teachablemachine.withgoogle.com/models/TiN1Db8n5/";
+      const urlFemale =
+        "https://teachablemachine.withgoogle.com/models/TiN1Db8n5/";
+      let model, webcam, labelContainer, maxPredictions;
+      async function init() {
+        if (document.getElementById("gender").checked) {
+          URL = urlMale;
+        } else {
+          URL = urlFemale;
+        }
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+        labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < maxPredictions; i++) {
+          var element = document.createElement("div");
+          element.classList.add("d-flex");
+          labelContainer.appendChild(element);
+        }
+      }
+      async function predict() {
+        var image = document.getElementById("face-image");
+        const prediction = await model.predict(image, false);
+        prediction.sort(
+          (a, b) => parseFloat(b.probability) - parseFloat(a.probability)
+        );
+        console.log(prediction[0].className);
+        var resultTitle, resultExplain, resultCeleb;
+        if (document.getElementById("gender").checked) {
+          gtag("event", "동물상 테스트 수행", {
+            event_category: "동물상 테스트 수행",
+            event_label: "남자",
+          });
+          switch (prediction[0].className) {
+            case "Jin":
+              resultTitle = "Jin";
+              resultExplain = "Jin";
+              resultCeleb = "Jin";
+              gtag("event", "남자 결과 강아지상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "V":
+              resultTitle = "V";
+              resultExplain = "V";
+              resultCeleb = "V";
+              gtag("event", "남자 결과 고양이상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "Jimin":
+              resultTitle = "Jimin";
+              resultExplain = "Jimin";
+              resultCeleb = "Jimin";
+              gtag("event", "남자 결과 토끼상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "JungKook":
+              resultTitle = "JungKook";
+              resultExplain = "JungKook";
+              resultCeleb = "JungKook";
+              gtag("event", "남자 결과 공룡상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "JHope":
+              resultTitle = "Jhope";
+              resultExplain = "Jhope";
+              resultCeleb = "Jhope";
+              gtag("event", "남자 결과 공룡상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "RM":
+              resultTitle = "RM";
+              resultExplain = "RM";
+              resultCeleb = "RM";
+              gtag("event", "남자 결과 알엠상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "Suga":
+              resultTitle = "Suga";
+              resultExplain = "Suga";
+              resultCeleb = "Suga";
+              gtag("event", "남자 결과 슈가상", {
+                event_category: "남자 결과",
+              });
+              break;
+          }
+        } else {
+          gtag("event", "동물상 테스트 수행", {
+            event_category: "동물상 테스트 수행",
+            event_label: "여자",
+          });
+          switch (prediction[0].className) {
+            case "Jin":
+              resultTitle = "Jin";
+              resultExplain = "Jin";
+              resultCeleb = "Jin";
+              gtag("event", "남자 결과 강아지상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "V":
+              resultTitle = "V";
+              resultExplain = "V";
+              resultCeleb = "V";
+              gtag("event", "남자 결과 고양이상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "Jimin":
+              resultTitle = "Jimin";
+              resultExplain = "Jimin";
+              resultCeleb = "Jimin";
+              gtag("event", "남자 결과 토끼상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "JungKook":
+              resultTitle = "JungKook";
+              resultExplain = "JungKook";
+              resultCeleb = "JungKook";
+              gtag("event", "남자 결과 공룡상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "JHope":
+              resultTitle = "Jhope";
+              resultExplain = "Jhope";
+              resultCeleb = "Jhope";
+              gtag("event", "남자 결과 공룡상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "RM":
+              resultTitle = "RM";
+              resultExplain = "RM";
+              resultCeleb = "RM";
+              gtag("event", "남자 결과 알엠상", {
+                event_category: "남자 결과",
+              });
+              break;
+            case "Suga":
+              resultTitle = "Suga";
+              resultExplain = "Suga";
+              resultCeleb = "Suga";
+              gtag("event", "남자 결과 슈가상", {
+                event_category: "남자 결과",
+              });
+              break;
+          }
+        }
+        const randomValue =
+          randomText[Math.floor(Math.random() * randomText.length)];
+        var title =
+          "<div class='" +
+          prediction[0].className +
+          "-animal-title'>" +
+          `Congratulations! ${prediction[0].className} of BTS is the your best match!` +
+          "</div>";
+        var explain =
+          "<div class='animal-explain pt-2'>" +
+          `Our AI says that you fit best with ${prediction[0].className}. AI can picture ${prediction[0].className} ` +
+          randomValue +
+          ", since he loves you the most.</div>";
+        var celeb =
+          "<div class='" +
+          prediction[0].className +
+          "-animal-celeb pt-2 pb-2'>" +
+          outroText +
+          "</div>";
+        $(".result-message").html(title + explain + celeb);
+        var barWidth;
+        for (let i = 0; i < maxPredictions; i++) {
+          barWidth =
+            Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
+          var labelTitle;
+          switch (prediction[i].className) {
+            case "Jin":
+              labelTitle = "Jin";
+              break;
+            case "V":
+              labelTitle = "V";
+              break;
+            case "Jimin":
+              labelTitle = "Jimin";
+              break;
+            case "JungKook":
+              labelTitle = "JungKook";
+              break;
+            case "JHope":
+              labelTitle = "Jhope";
+              break;
+            case "RM":
+              labelTitle = "RM";
+              break;
+            case "Suga":
+              labelTitle = "Suga";
+              break;
+          }
+
+          var label =
+            "<div class='animal-label d-flex align-items-center'>" +
+            labelTitle +
+            "</div>";
+          var bar =
+            "<div class='bar-container position-relative container'><div class='" +
+            prediction[i].className +
+            "-box'></div><div class='d-flex justify-content-center align-items-center " +
+            prediction[i].className +
+            "-bar' style='width: " +
+            barWidth +
+            "'><span class='d-block percent-text'>" +
+            Math.round(prediction[i].probability.toFixed(2) * 100) +
+            "%</span></div></div>";
+          labelContainer.childNodes[i].innerHTML = label + bar;
+        }
+      }
+    </script>
+    <script>
+      function iosApp() {
+        document.getElementById("addThs").style.display = "none";
+        document.getElementById("disqus_thread").style.display = "none";
+        var kakao = document.getElementsByClassName("kakao_ad_area");
+        for (var i = 0; i < kakao.length; i++) {
+          if (kakao[i]) {
+            kakao[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+    <!-- 
+image input box
+Copyright (c) 2020 by Aaron Vanston (https://codepen.io/aaronvanston/pen/yNYOXR)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+gender toggle
+Copyright (c) 2020 by Mert Cukuren (https://codepen.io/knyttneve/pen/bPpEZY)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script
+      type="text/javascript"
+      src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-63064a01916ae47c"
+    ></script>
+  </body>
+</html>
